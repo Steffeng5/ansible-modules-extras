@@ -156,6 +156,8 @@ def ensure(module, state, packages, params):
 
 def is_installed(module, package):
     rc, out, err = module.run_command(['pkg', 'list', '--', package])
+	 if rc != 0:
+      rc, out, err = module.run_command(['pkginfo', package])
     return not bool(int(rc))
 
 
